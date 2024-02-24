@@ -54,7 +54,7 @@ function List({memos, setMemos, setchoosedMemoId}){
     //既にメモタイトルが"新規メモ"のものがあれば、警告文を出して表示しない
     const existNewMemo = memos.find((memo) => memo.key === "新規メモ");
     if(existNewMemo) {
-      console.error("既に新規メモというメモが作成されているなり！")
+      window.alert("既に新規メモというメモが作成されているなり！")
     } else {
         const addId = memos.length + 1;//配列の最後に加えたい。
         setMemos([
@@ -96,7 +96,7 @@ function Edit({memos, setMemos, choosedMemo}){
     //テキストエリアに入力された値がメモリストに存在している場合は、編集ボタンを押下させない。
     const existTitleMemo = memos.find((memo) => memo.key === title);
     if(existTitleMemo){
-      console.error("既存のメモタイトル、もしくは変更なしでは編集ボタンは押せないだに！")
+      window.alert("既存のメモタイトル、もしくは変更なしでは編集ボタンは押せないだに！")
     } else {
       const newMemosForList = memos.map((memo)=>{
         if (memo.id === choosedMemo.id){
