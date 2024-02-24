@@ -28,6 +28,8 @@ export default function App() {
             memos={memos}
             setMemos={setMemos}
             choosedMemo={choosedMemo}
+            //ここにsetchoosedMemoId入れてもいいかも。
+            //テキストエディタがずっと表示されっぱなしなので。
           />
         }
         {
