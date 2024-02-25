@@ -15,16 +15,19 @@ export default function App() {
   //IDから選択されたメモを取得する => Editコンポーネントに渡す
   const choosedMemo = memos.find((element)=> element.id === choosedMemoId);
 
+  //編集可否判定
+  const [editable, setEditable] = useState(false);
+
   return (
       <div className='MemoApp'>
         <List
           memos={memos}
           setMemos={setMemos}
           setchoosedMemoId={setchoosedMemoId}
+          setEditable={setEditable}
         />
         {
-          //数字を条件式にしない！
-          choosedMemoId &&
+          editable &&
           <Edit
             memos={memos}
             setMemos={setMemos}
@@ -34,8 +37,7 @@ export default function App() {
           />
         }
         {
-          //数字を条件式にしない！
-          choosedMemoId &&
+          editable &&
           <Delete
             memos={memos}
             setMemos={setMemos}
@@ -47,9 +49,10 @@ export default function App() {
   );
 }
 
-function List({memos, setMemos, setchoosedMemoId}){
+function List({memos, setMemos, setchoosedMemoId, setEditable}){
   const clickMemoTitle = (memoId) =>{
     setchoosedMemoId(memoId);
+    setEditable(true);
   }
 
   const create = () => {
@@ -64,6 +67,7 @@ function List({memos, setMemos, setchoosedMemoId}){
           {id: addId, key:"新規メモ", value:"新規メモ"}
         ])
         setchoosedMemoId(addId);
+        setEditable(true);
     }
   }
 
