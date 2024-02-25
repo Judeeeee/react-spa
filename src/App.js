@@ -23,6 +23,7 @@ export default function App() {
           setchoosedMemoId={setchoosedMemoId}
         />
         {
+          //数字を条件式にしない！
           choosedMemoId &&
           <Edit
             memos={memos}
@@ -33,6 +34,7 @@ export default function App() {
           />
         }
         {
+          //数字を条件式にしない！
           choosedMemoId &&
           <Delete
             memos={memos}
@@ -94,9 +96,9 @@ function Edit({memos, setMemos, choosedMemo}){
     const text = inputText;
 
     //テキストエリアに入力された値がメモリストに存在している場合は、編集ボタンを押下させない。
-    const existTitleMemo = memos.find((memo) => memo.key === title);
+    const existTitleMemo = memos.find((memo) => memo.key === title && memo.value === text);//かつvaluesにする。
     if(existTitleMemo){
-      window.alert("既存のメモタイトル、もしくは変更なしでは編集ボタンは押せないだに！")
+      window.alert("既にそのメモタイトルで作成されているか、変更なしで編集ボタンを押下はできないだに！")
     } else {
       const newMemosForList = memos.map((memo)=>{
         if (memo.id === choosedMemo.id){
@@ -107,8 +109,8 @@ function Edit({memos, setMemos, choosedMemo}){
       })
       //保存
       setMemos(newMemosForList);
-      localStorage.setItem(title, text);
       localStorage.removeItem(choosedMemo.key);
+      localStorage.setItem(title, text);
     }
   }
 
