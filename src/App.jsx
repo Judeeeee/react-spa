@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import List from "./List.js";
-import Edit from "./Edit.js";
+import List from "./List.jsx";
+import Edit from "./Edit.jsx";
 import "./App.css";
 
 export default function App() {
