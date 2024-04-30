@@ -11,11 +11,11 @@ export default function Edit({ memos, setMemos, choosedMemo, setEditable }) {
     const text = inputText;
 
     const existTitleMemo = memos.find(
-      (memo) => memo.key === title && memo.value === text,
+      (memo) => memo.key === title && memo.value === text
     );
     if (existTitleMemo) {
       window.alert(
-        "既にメモタイトルが存在しているか、変更がない状態で編集ボタンを押下できません。",
+        "既にメモタイトルが存在しているか、変更がない状態で編集ボタンを押下できません。"
       );
     } else {
       const newMemosForList = memos.map((memo) => {

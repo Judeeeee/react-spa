@@ -1,11 +1,11 @@
 export default function List({
   memos,
   setMemos,
-  setchoosedMemoId,
+  setChoosedMemoId,
   setEditable,
 }) {
   const clickMemoTitle = (memoId) => {
-    setchoosedMemoId(memoId);
+    setChoosedMemoId(memoId);
     setEditable(true);
   };
 
@@ -16,7 +16,7 @@ export default function List({
     } else {
       const addId = memos.length + 1;
       setMemos([...memos, { id: addId, key: "新規メモ", value: "新規メモ" }]);
-      setchoosedMemoId(addId);
+      setChoosedMemoId(addId);
       setEditable(true);
     }
   };
