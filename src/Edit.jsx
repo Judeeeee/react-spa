@@ -10,9 +10,7 @@ export default function Edit({ memos, setMemos, choosedMemo, setEditable }) {
     const title = inputText.split("\n")[0];
     const text = inputText;
 
-    const existTitleMemo = memos.find(
-      (memo) => memo.key === title && memo.value === text
-    );
+    const existTitleMemo = memos.every((memo) => memo.value === text);
     if (existTitleMemo) {
       window.alert(
         "既にメモタイトルが存在しているか、変更がない状態で編集ボタンを押下できません。"
