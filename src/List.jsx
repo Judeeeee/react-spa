@@ -27,15 +27,19 @@ export default function List({
       <ul>
         {memos.map((memo) => (
           <li key={memo.id}>
-            <a href="#" onClick={() => clickMemoTitle(memo.id)}>
+            <button
+              type="button"
+              onClick={() => clickMemoTitle(memo.id)}
+              className="link-button"
+            >
               {memo.key}
-            </a>
+            </button>
           </li>
         ))}
       </ul>
-      <a href="#" onClick={() => create()}>
+      <button type="button" onClick={() => create()} className="link-button">
         +
-      </a>
+      </button>
     </>
   );
 }
