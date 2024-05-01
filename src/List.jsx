@@ -10,7 +10,8 @@ export default function List({
   };
 
   const create = () => {
-    const existNewMemo = memos.every((memo) => memo.key === "新規メモ");
+    const existNewMemo = memos.find((memo) => memo.key === "新規メモ");
+
     if (existNewMemo) {
       window.alert("既に新規メモが作成されています。");
     } else {
