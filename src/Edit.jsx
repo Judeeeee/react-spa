@@ -13,7 +13,7 @@ export default function Edit({ memos, setMemos, choosedMemo, setEditable }) {
     const existTitleMemo = memos.every((memo) => memo.value === text);
     if (existTitleMemo) {
       window.alert(
-        "既にメモタイトルが存在しているか、変更がない状態で編集ボタンを押下できません。"
+        "既にメモタイトルが存在しているか、変更がない状態で編集ボタンを押下できません。",
       );
     } else {
       const newMemosForList = memos.map((memo) => {
