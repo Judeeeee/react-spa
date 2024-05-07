@@ -15,7 +15,7 @@ export default function List({
     if (existNewMemo) {
       window.alert("既に新規メモが作成されています。");
     } else {
-      const addId = memos.length + 1;
+      const addId = crypto.randomUUID();
       setMemos([...memos, { id: addId, key: "新規メモ", value: "新規メモ" }]);
       setChoosedMemoId(addId);
       setEditable(true);
