@@ -1,11 +1,7 @@
-export default function List({
-  memos,
-  setMemos,
-  setChoosedMemoId,
-  setEditable,
-}) {
+export default function List({ memos, setMemos, setChoosedMemo, setEditable }) {
   const clickMemoTitle = (memoId) => {
-    setChoosedMemoId(memoId);
+    const choosedMemo = memos.find((element) => element.id === memoId);
+    setChoosedMemo(choosedMemo);
     setEditable(true);
   };
 
@@ -15,9 +11,13 @@ export default function List({
     if (existNewMemo) {
       window.alert("既に新規メモが作成されています。");
     } else {
-      const addId = crypto.randomUUID();
-      setMemos([...memos, { id: addId, title: "新規メモ", text: "新規メモ" }]);
-      setChoosedMemoId(addId);
+      const newMemo = {
+        id: crypto.randomUUID(),
+        title: "新規メモ",
+        text: "新規メモ",
+      };
+      setChoosedMemo(newMemo);
+      setMemos([...memos, newMemo]);
       setEditable(true);
     }
   };

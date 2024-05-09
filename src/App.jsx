@@ -8,8 +8,7 @@ export default function App() {
     return { id: index + 1, title: key, text: localStorage.getItem(key) };
   });
   const [memos, setMemos] = useState(formattedMemos);
-  const [choosedMemoId, setChoosedMemoId] = useState(null);
-  const choosedMemo = memos.find((element) => element.id === choosedMemoId);
+  const [choosedMemo, setChoosedMemo] = useState(null);
   const [editable, setEditable] = useState(false);
 
   return (
@@ -18,7 +17,7 @@ export default function App() {
         <List
           memos={memos}
           setMemos={setMemos}
-          setChoosedMemoId={setChoosedMemoId}
+          setChoosedMemo={setChoosedMemo}
           setEditable={setEditable}
         />
       </div>
