@@ -30,26 +30,6 @@ export default function Edit({ memos, setMemos, choosedMemo, setEditable }) {
     }
   };
 
-  return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <TextArea key={choosedMemo.id} inputText={placeholder} />
-        <br />
-        <button type="submit" name="button" value="submit">
-          編集
-        </button>
-        <Delete
-          memos={memos}
-          setMemos={setMemos}
-          choosedMemo={choosedMemo}
-          setEditable={setEditable}
-        />
-      </form>
-    </div>
-  );
-}
-
-function Delete({ memos, setMemos, choosedMemo, setEditable }) {
   const destroy = () => {
     const updateMemos = memos.filter((memo) => memo.id !== choosedMemo.id);
     setMemos(updateMemos);
@@ -59,11 +39,18 @@ function Delete({ memos, setMemos, choosedMemo, setEditable }) {
   };
 
   return (
-    <>
-      <button type="button" name="destroy" onClick={() => destroy()}>
-        削除
-      </button>
-    </>
+    <div>
+      <form onSubmit={handleSubmit}>
+        <TextArea key={choosedMemo.id} inputText={placeholder} />
+        <br />
+        <button type="submit" name="button" value="submit">
+          編集
+        </button>
+        <button type="button" name="destroy" onClick={() => destroy()}>
+          削除
+        </button>
+      </form>
+    </div>
   );
 }
 
