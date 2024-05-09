@@ -10,13 +10,13 @@ export default function List({
   };
 
   const create = () => {
-    const existNewMemo = memos.find((memo) => memo.key === "新規メモ");
+    const existNewMemo = memos.find((memo) => memo.title === "新規メモ");
 
     if (existNewMemo) {
       window.alert("既に新規メモが作成されています。");
     } else {
       const addId = crypto.randomUUID();
-      setMemos([...memos, { id: addId, key: "新規メモ", value: "新規メモ" }]);
+      setMemos([...memos, { id: addId, title: "新規メモ", text: "新規メモ" }]);
       setChoosedMemoId(addId);
       setEditable(true);
     }
@@ -32,7 +32,7 @@ export default function List({
               onClick={() => clickMemoTitle(memo.id)}
               className="link-button"
             >
-              {memo.key}
+              {memo.title}
             </button>
           </li>
         ))}

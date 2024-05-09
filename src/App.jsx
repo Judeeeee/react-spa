@@ -5,7 +5,7 @@ import "./App.css";
 
 export default function App() {
   const formattedMemos = Object.keys(localStorage).map((key, index) => {
-    return { id: index + 1, key: key, value: localStorage.getItem(key) };
+    return { id: index + 1, title: key, text: localStorage.getItem(key) };
   });
   const [memos, setMemos] = useState(formattedMemos);
   const [choosedMemoId, setChoosedMemoId] = useState(null);

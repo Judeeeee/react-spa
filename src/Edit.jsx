@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 export default function Edit({ memos, setMemos, choosedMemo, setEditable }) {
-  const placeholder = choosedMemo.value;
+  const placeholder = choosedMemo.text;
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -10,7 +10,7 @@ export default function Edit({ memos, setMemos, choosedMemo, setEditable }) {
     const title = inputText.split("\n")[0];
     const text = inputText;
 
-    const existTitleMemo = memos.every((memo) => memo.value === text);
+    const existTitleMemo = memos.every((memo) => memo.text === text);
     if (existTitleMemo) {
       window.alert(
         "既にメモタイトルが存在しているか、変更がない状態で編集ボタンを押下できません。",
@@ -18,14 +18,14 @@ export default function Edit({ memos, setMemos, choosedMemo, setEditable }) {
     } else {
       const newMemosForList = memos.map((memo) => {
         if (memo.id === choosedMemo.id) {
-          return { id: memo.id, key: title, value: text };
+          return { id: memo.id, title: title, text: text };
         } else {
           return memo;
         }
       });
 
       setMemos(newMemosForList);
-      localStorage.removeItem(choosedMemo.key);
+      localStorage.removeItem(choosedMemo.title);
       localStorage.setItem(title, text);
     }
   };
@@ -33,7 +33,7 @@ export default function Edit({ memos, setMemos, choosedMemo, setEditable }) {
   const destroy = () => {
     const updateMemos = memos.filter((memo) => memo.id !== choosedMemo.id);
     setMemos(updateMemos);
-    const chooseMemoKey = choosedMemo.key;
+    const chooseMemoKey = choosedMemo.title;
     localStorage.removeItem(chooseMemoKey);
     setEditable(false);
   };
