@@ -12,7 +12,7 @@ export default function App() {
   const [editable, setEditable] = useState(false);
 
   const createMemo = () => {
-    const existNewMemo = memos.find((memo) => memo.title === "新規メモ");
+    const existNewMemo = memos.some((memo) => memo.title === "新規メモ");
 
     if (existNewMemo) {
       window.alert("既に新規メモが作成されています。");
@@ -35,7 +35,7 @@ export default function App() {
     const title = inputText.split("\n")[0];
     const text = inputText;
 
-    const existTitleMemo = memos.every((memo) => memo.text === text);
+    const existTitleMemo = memos.some((memo) => memo.text === text);
     if (existTitleMemo) {
       window.alert(
         "既にメモタイトルが存在しているか、変更がない状態で編集ボタンを押下できません。"
