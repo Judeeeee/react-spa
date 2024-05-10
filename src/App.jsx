@@ -37,9 +37,7 @@ export default function App() {
 
     const existTitleMemo = memos.some((memo) => memo.text === text);
     if (existTitleMemo) {
-      window.alert(
-        "既にメモタイトルが存在しているか、変更がない状態で編集ボタンを押下できません。"
-      );
+      window.alert("全く同じ内容のメモが既に存在します。");
     } else {
       const newMemosForList = memos.map((memo) => {
         if (memo.id === choosedMemo.id) {
