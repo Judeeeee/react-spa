@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import TextArea from "./TextArea.jsx";
 
 export default function Edit({ choosedMemo, handleSubmit, destroy }) {
   return (
@@ -14,18 +14,5 @@ export default function Edit({ choosedMemo, handleSubmit, destroy }) {
         </button>
       </form>
     </div>
-  );
-}
-
-function TextArea({ inputText }) {
-  const [placeholder, setPlaceholder] = useState(inputText);
-  return (
-    <textarea
-      name="memotext"
-      id="memotext"
-      value={placeholder}
-      onChange={(e) => setPlaceholder(e.target.value)}
-      rows={15}
-    />
   );
 }
