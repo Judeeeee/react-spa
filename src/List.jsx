@@ -4,9 +4,8 @@ export default function List({
   createMemo,
   setEditable,
 }) {
-  const clickMemoTitle = (memoId) => {
-    const choosedMemo = memos.find((element) => element.id === memoId);
-    setChoosedMemo(choosedMemo);
+  const clickMemoTitle = (memo) => {
+    setChoosedMemo(memo);
     setEditable(true);
   };
 
@@ -17,7 +16,7 @@ export default function List({
           <li key={memo.id}>
             <button
               type="button"
-              onClick={() => clickMemoTitle(memo.id)}
+              onClick={() => clickMemoTitle(memo)}
               className="link-button"
             >
               {memo.title}
