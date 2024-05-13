@@ -20,7 +20,7 @@ export default function Edit({
     } else {
       const newMemosForList = memos.map((memo) => {
         if (memo.id === choosedMemo.id) {
-          return { id: memo.id, title: title, text: text };
+          return { id: memo.id, title, text };
         } else {
           return memo;
         }
