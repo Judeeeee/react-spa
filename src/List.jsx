@@ -1,9 +1,4 @@
-export default function List({
-  memos,
-  setChoosedMemo,
-  createMemo,
-  setEditable,
-}) {
+export default function List({ memos, setChoosedMemo, create, setEditable }) {
   const clickMemoTitle = (memo) => {
     setChoosedMemo(memo);
     setEditable(true);
@@ -24,11 +19,7 @@ export default function List({
           </li>
         ))}
       </ul>
-      <button
-        type="button"
-        onClick={() => createMemo()}
-        className="link-button"
-      >
+      <button type="button" onClick={() => create()} className="link-button">
         +
       </button>
     </>

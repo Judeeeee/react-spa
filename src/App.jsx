@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import List from "./List.jsx";
-import Edit from "./Edit.jsx";
+import Form from "./Form.jsx";
 import "./App.css";
 
 export default function App() {
@@ -9,7 +9,7 @@ export default function App() {
   const [choosedMemo, setChoosedMemo] = useState(null);
   const [editable, setEditable] = useState(false);
 
-  const createMemo = () => {
+  const create = () => {
     const existNewMemo = memos.some((memo) => memo.text === "新規メモ");
 
     if (existNewMemo) {
@@ -25,15 +25,15 @@ export default function App() {
     }
   };
 
-  const update = (newMemosForList) => {
-    setMemos(newMemosForList);
-    localStorage.setItem("memos", JSON.stringify(newMemosForList));
+  const update = (updatedMemos) => {
+    setMemos(updatedMemos);
+    localStorage.setItem("memos", JSON.stringify(updatedMemos));
   };
 
   const destroy = () => {
-    const updateMemos = memos.filter((memo) => memo.id !== choosedMemo.id);
-    setMemos(updateMemos);
-    localStorage.setItem("memos", JSON.stringify(updateMemos));
+    const filteredMemos = memos.filter((memo) => memo.id !== choosedMemo.id);
+    setMemos(filteredMemos);
+    localStorage.setItem("memos", JSON.stringify(filteredMemos));
     setEditable(false);
   };
 
@@ -43,13 +43,13 @@ export default function App() {
         <List
           memos={memos}
           setChoosedMemo={setChoosedMemo}
-          createMemo={createMemo}
+          create={create}
           setEditable={setEditable}
         />
       </div>
       <div className="sentence">
         {editable && (
-          <Edit
+          <Form
             memos={memos}
             choosedMemo={choosedMemo}
             update={update}
