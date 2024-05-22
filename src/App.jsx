@@ -4,22 +4,19 @@ import Edit from "./Edit.jsx";
 import "./App.css";
 
 export default function App() {
-  const formattedMemos = Object.keys(localStorage).map((key, index) => {
-    return { id: index, title: key, text: localStorage.getItem(key) };
-  });
-  const [memos, setMemos] = useState(formattedMemos);
+  const initialMemos = JSON.parse(localStorage.getItem("memos")) || [];
+  const [memos, setMemos] = useState(initialMemos);
   const [choosedMemo, setChoosedMemo] = useState(null);
   const [editable, setEditable] = useState(false);
 
   const createMemo = () => {
-    const existNewMemo = memos.some((memo) => memo.title === "新規メモ");
+    const existNewMemo = memos.some((memo) => memo.text === "新規メモ");
 
     if (existNewMemo) {
       window.alert("既に新規メモが作成されています。");
     } else {
       const newMemo = {
         id: crypto.randomUUID(),
-        title: "新規メモ",
         text: "新規メモ",
       };
       setChoosedMemo(newMemo);
@@ -28,16 +25,15 @@ export default function App() {
     }
   };
 
-  const update = () => {
-    localStorage.removeItem(choosedMemo.title);
-    localStorage.setItem(choosedMemo.title, choosedMemo.text);
+  const update = (newMemosForList) => {
+    setMemos(newMemosForList);
+    localStorage.setItem("memos", JSON.stringify(newMemosForList));
   };
 
   const destroy = () => {
     const updateMemos = memos.filter((memo) => memo.id !== choosedMemo.id);
     setMemos(updateMemos);
-    const chooseMemoKey = choosedMemo.title;
-    localStorage.removeItem(chooseMemoKey);
+    localStorage.setItem("memos", JSON.stringify(updateMemos));
     setEditable(false);
   };
 
@@ -56,7 +52,6 @@ export default function App() {
           <Edit
             memos={memos}
             choosedMemo={choosedMemo}
-            setMemos={setMemos}
             update={update}
             destroy={destroy}
           />

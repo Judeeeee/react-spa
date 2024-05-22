@@ -19,7 +19,7 @@ export default function List({
               onClick={() => clickMemoTitle(memo)}
               className="link-button"
             >
-              {memo.title}
+              {memo.text.split("\n")[0]}
             </button>
           </li>
         ))}
