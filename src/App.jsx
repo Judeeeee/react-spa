@@ -1,13 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, createContext } from "react";
 import List from "./List.jsx";
 import Form from "./Form.jsx";
+import LoginButton from "./LoginButton.jsx";
 import "./App.css";
+export const LoginContext = createContext(null);
 
 export default function App() {
   const initialMemos = JSON.parse(localStorage.getItem("memos")) || [];
   const [memos, setMemos] = useState(initialMemos);
   const [choosedMemo, setChoosedMemo] = useState(null);
   const [editable, setEditable] = useState(false);
+  const [loginStatus, setloginStatus] = useState(false);
 
   const create = () => {
     const existNewMemo = memos.some((memo) => memo.text === "新規メモ");
@@ -39,24 +42,30 @@ export default function App() {
 
   return (
     <div className="memoapp">
-      <div className="sentence">
-        <List
-          memos={memos}
-          setChoosedMemo={setChoosedMemo}
-          create={create}
-          setEditable={setEditable}
-        />
-      </div>
-      <div className="sentence">
-        {editable && (
-          <Form
+      <LoginContext.Provider value={loginStatus}>
+        <div className="sentence">
+          <List
             memos={memos}
-            choosedMemo={choosedMemo}
-            update={update}
-            destroy={destroy}
+            setChoosedMemo={setChoosedMemo}
+            create={create}
+            setEditable={setEditable}
           />
-        )}
-      </div>
+        </div>
+        <div className="sentence">
+          <LoginButton
+            loginStatus={loginStatus}
+            setloginStatus={setloginStatus}
+          />
+          {editable && (
+            <Form
+              memos={memos}
+              choosedMemo={choosedMemo}
+              update={update}
+              destroy={destroy}
+            />
+          )}
+        </div>
+      </LoginContext.Provider>
     </div>
   );
 }
