@@ -1,10 +1,5 @@
 export default function LoginButton({ loginStatus, setloginStatus }) {
-  let text;
-  if (loginStatus) {
-    text = "ログアウト";
-  } else {
-    text = "ログイン";
-  }
+  const text = loginStatus ? "ログアウト" : "ログイン";
 
   const login = () => {
     if (loginStatus) {
