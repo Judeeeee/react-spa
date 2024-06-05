@@ -1,13 +1,9 @@
-export default function LoginButton({ loginStatus, setloginStatus }) {
+import { useLogin } from "./useLogin.jsx";
+
+export default function LoginButton() {
+  const { loginStatus, login } = useLogin();
   const text = loginStatus ? "ログアウト" : "ログイン";
 
-  const login = () => {
-    if (loginStatus) {
-      setloginStatus(false);
-    } else {
-      setloginStatus(true);
-    }
-  };
   return (
     <button type="button" name="login-button" onClick={() => login()}>
       {text}

@@ -1,9 +1,8 @@
-import { useContext } from "react";
-import { LoginContext } from "./App.jsx";
 import TextArea from "./TextArea.jsx";
+import { useLogin } from "./useLogin.jsx";
 
 export default function Form({ memos, choosedMemo, update, destroy }) {
-  const loginStatus = useContext(LoginContext);
+  const { loginStatus } = useLogin();
 
   const handleFormat = (e) => {
     e.preventDefault();

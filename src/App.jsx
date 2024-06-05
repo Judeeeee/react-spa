@@ -1,16 +1,15 @@
-import React, { useState, createContext } from "react";
+import React, { useState } from "react";
 import List from "./List.jsx";
 import Form from "./Form.jsx";
 import LoginButton from "./LoginButton.jsx";
+import { LoginProvider } from "./useLogin.jsx";
 import "./App.css";
-export const LoginContext = createContext(null);
 
 export default function App() {
   const initialMemos = JSON.parse(localStorage.getItem("memos")) || [];
   const [memos, setMemos] = useState(initialMemos);
   const [choosedMemo, setChoosedMemo] = useState(null);
   const [editable, setEditable] = useState(false);
-  const [loginStatus, setloginStatus] = useState(false);
 
   const create = () => {
     const existNewMemo = memos.some((memo) => memo.text === "新規メモ");
@@ -42,7 +41,7 @@ export default function App() {
 
   return (
     <div className="memoapp">
-      <LoginContext.Provider value={loginStatus}>
+      <LoginProvider>
         <div className="sentence">
           <List
             memos={memos}
@@ -52,10 +51,7 @@ export default function App() {
           />
         </div>
         <div className="sentence">
-          <LoginButton
-            loginStatus={loginStatus}
-            setloginStatus={setloginStatus}
-          />
+          <LoginButton />
           {editable && (
             <Form
               memos={memos}
@@ -65,7 +61,7 @@ export default function App() {
             />
           )}
         </div>
-      </LoginContext.Provider>
+      </LoginProvider>
     </div>
   );
 }

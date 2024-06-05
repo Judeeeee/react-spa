@@ -1,8 +1,7 @@
-import { useContext } from "react";
-import { LoginContext } from "./App.jsx";
+import { useLogin } from "./useLogin.jsx";
 
 export default function List({ memos, setChoosedMemo, create, setEditable }) {
-  const loginStatus = useContext(LoginContext);
+  const { loginStatus } = useLogin();
   const clickMemoTitle = (memo) => {
     setChoosedMemo(memo);
     setEditable(true);
