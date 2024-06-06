@@ -5,11 +5,7 @@ const LoginContext = createContext();
 export const LoginProvider = ({ children }) => {
   const [loginStatus, setloginStatus] = useState(false);
   const login = () => {
-    if (loginStatus) {
-      setloginStatus(false);
-    } else {
-      setloginStatus(true);
-    }
+    setloginStatus(!loginStatus);
   };
 
   return (
