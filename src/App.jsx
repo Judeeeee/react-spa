@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import List from "./List.jsx";
 import Form from "./Form.jsx";
+import LoginButton from "./LoginButton.jsx";
+import { LoginProvider } from "./useLogin.jsx";
 import "./App.css";
 
 export default function App() {
@@ -39,24 +41,27 @@ export default function App() {
 
   return (
     <div className="memoapp">
-      <div className="sentence">
-        <List
-          memos={memos}
-          setChoosedMemo={setChoosedMemo}
-          create={create}
-          setEditable={setEditable}
-        />
-      </div>
-      <div className="sentence">
-        {editable && (
-          <Form
+      <LoginProvider>
+        <div className="sentence">
+          <List
             memos={memos}
-            choosedMemo={choosedMemo}
-            update={update}
-            destroy={destroy}
+            setChoosedMemo={setChoosedMemo}
+            create={create}
+            setEditable={setEditable}
           />
-        )}
-      </div>
+        </div>
+        <div className="sentence">
+          <LoginButton />
+          {editable && (
+            <Form
+              memos={memos}
+              choosedMemo={choosedMemo}
+              update={update}
+              destroy={destroy}
+            />
+          )}
+        </div>
+      </LoginProvider>
     </div>
   );
 }

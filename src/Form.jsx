@@ -1,6 +1,9 @@
 import TextArea from "./TextArea.jsx";
+import { useLogin } from "./useLogin.jsx";
 
 export default function Form({ memos, choosedMemo, update, destroy }) {
+  const { loginStatus } = useLogin();
+
   const handleFormat = (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
@@ -27,12 +30,16 @@ export default function Form({ memos, choosedMemo, update, destroy }) {
       <form onSubmit={handleFormat}>
         <TextArea key={choosedMemo.id} inputText={choosedMemo.text} />
         <br />
-        <button type="submit" name="button" value="submit">
-          編集
-        </button>
-        <button type="button" name="destroy" onClick={() => destroy()}>
-          削除
-        </button>
+        {loginStatus && (
+          <>
+            <button type="submit" name="button" value="submit">
+              編集
+            </button>
+            <button type="button" name="destroy" onClick={() => destroy()}>
+              削除
+            </button>
+          </>
+        )}
       </form>
     </div>
   );

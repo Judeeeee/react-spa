@@ -1,4 +1,7 @@
+import { useLogin } from "./useLogin.jsx";
+
 export default function List({ memos, setChoosedMemo, create, setEditable }) {
+  const { loginStatus } = useLogin();
   const clickMemoTitle = (memo) => {
     setChoosedMemo(memo);
     setEditable(true);
@@ -19,9 +22,11 @@ export default function List({ memos, setChoosedMemo, create, setEditable }) {
           </li>
         ))}
       </ul>
-      <button type="button" onClick={() => create()} className="link-button">
-        +
-      </button>
+      {loginStatus && (
+        <button type="button" onClick={() => create()} className="link-button">
+          +
+        </button>
+      )}
     </>
   );
 }
